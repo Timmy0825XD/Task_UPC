@@ -1,18 +1,28 @@
-const TareaCard = ({ titulo, materia, fecha, completada }) => {
+import { useTareas } from "../context/TareasContext";
+import { Link } from "react-router-dom";
+import "./TareaCard.css";
+
+const TareaCard = ({ id, titulo, materia, fecha, completada }) => {
+  const { toggleTarea } = useTareas();
+
   return (
-    <div style={{
-      border: "1px solid #ccc",
-      padding: "10px",
-      margin: "10px 0",
-      borderRadius: "8px"
-    }}>
-      <h3>{titulo}</h3>
-      <p><strong>Materia:</strong> {materia}</p>
-      <p><strong>Fecha:</strong> {fecha}</p>
-      <p>
-        <strong>Estado:</strong>{" "}
-        {completada ? "Completada" : "Pendiente"}
-      </p>
+    <div className={`card ${completada ? "done" : ""}`}>
+      <div className="left">
+        <h3>{titulo}</h3>
+        <p>{materia} • {fecha}</p>
+      </div>
+
+      <div className="right">
+        <input
+          type="checkbox"
+          className="checkbox"
+          checked={completada}
+          onChange={() => toggleTarea(id)}
+        />
+        <Link to={`/tarea/${id}`} className="link">
+          Ver
+        </Link>
+      </div>
     </div>
   );
 };

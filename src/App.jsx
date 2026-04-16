@@ -1,18 +1,19 @@
-function App() {
-  const tareasPendientes = tareasIniciales.filter(
-    (t) => !t.completada
-  ).length;
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ListaTareas from "./components/ListaTareas";
+import Header from "./components/Header";
+import NuevaTarea from "./pages/NuevaTarea";
+import DetalleTarea from "./pages/DetalleTarea";
 
+function App() {
   return (
-    <>
-      <div>
-        <h1>TaskUPC — Mi Gestor Académico</h1>
-      </div>
-      <div>
-        <Header pendientes={tareasPendientes} />
-        <ListaTareas />
-      </div>
-    </>
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route path="/" element={<ListaTareas />} />
+        <Route path="/nueva" element={<NuevaTarea />} />
+        <Route path="/tarea/:id" element={<DetalleTarea />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

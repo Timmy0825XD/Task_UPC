@@ -1,0 +1,25 @@
+.filtros {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.filtros button {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: white;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.filtros button:hover {
+  background: var(--primary-soft);
+}
+
+.filtros button.activo {
+  background: var(--primary-soft);
+  color: var(--text);
+  border: 1px solid var(--primary);
+}

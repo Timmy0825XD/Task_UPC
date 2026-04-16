@@ -1,13 +1,21 @@
-const Header = ({ pendientes }) => {
+import { useTareas } from "../context/TareasContext";
+import { Link } from "react-router-dom";
+import "./Header.css";
+
+const Header = () => {
+  const { tareas } = useTareas();
+  const pendientes = tareas.filter((t) => !t.completada).length;
+
   return (
-    <header style={{
-      backgroundColor: "#282c34",
-      color: "white",
-      padding: "15px",
-      textAlign: "center"
-    }}>
-      <h1>TaskUPC</h1>
-      <p>Tareas pendientes: {pendientes}</p>
+    <header className="header">
+      <div>
+        <h1>TaskUPC</h1>
+        <span>{pendientes} pendientes</span>
+      </div>
+
+      <Link to="/nueva" className="btn-primary">
+        Nueva tarea
+      </Link>
     </header>
   );
 };
